@@ -1,1 +1,1 @@
-gcc main.c functions.c -o carRacing
+gcc main.c functions.c display.c -o carRacing 

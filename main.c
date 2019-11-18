@@ -4,6 +4,11 @@ int main(void)
 {
     char matrix[ROWS][COLUMN];
 
+    if(cursorWindows == 1)
+    {
+        showConsoleCursor(0);
+    }
+
     init(matrix);
     runtime(matrix);
 

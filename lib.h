@@ -8,6 +8,11 @@
 #else
 # define CLEAR_SCREEN puts("\x1b[H\x1b[2J")
 #endif
+#ifdef _WIN32
+# define cursorWindows 1
+#else
+# define cursorWindows 0
+#endif
 
 void init(char matrix[ROWS][COLUMN]);
 
