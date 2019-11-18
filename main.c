@@ -7,6 +7,7 @@ int main(void)
     if(cursorWindows == 1)
     {
         showConsoleCursor(0);
+        CLEAR_SCREEN;
     }
 
     init(matrix);

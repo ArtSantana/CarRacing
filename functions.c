@@ -15,40 +15,41 @@ void init(char matrix[ROWS][COLUMN])
 
 }
 
-void printMatrix(char matrix[ROWS][COLUMN])
+void printMatrix(char matrix[ROWS][COLUMN], int sideAnimation)
 {
-    int i, j, k, switcher = 0;
-    switcher = switcher == 0 ? 1 : 0;
+    int i, j, k;
     for(i=0; i<ROWS; i++)
         {            
             for(j=0; j<COLUMN; j++)
-            {
-                if(switcher == 0)
+            {                  
+                if(sideAnimation == 0)
                 {
                     if(i % 2 == 0)
                     {
                         for(k=0; k<ROWS; k++)
                         {
                             matrix[k][1] = 32;
+                            matrix[k][COLUMN - 2] = 32;
                         }
                         matrix[i][1] = 178;
                         matrix[i][COLUMN -2] = 178;
                     }
                 }
-                else if(switcher == 1)
+                else
                 {
                     if(i % 2 != 0)
                     {
                         for(k=0; k<ROWS; k++)
                         {
                             matrix[k][1] = 32;
+                            matrix[k][COLUMN - 2] = 32;
                         }
                         matrix[i][1] = 178;
                         matrix[i][COLUMN -2] = 178;
                     }
                 }
-                
-                printf("%c", matrix[i][j]);
+
+                printf("%c", matrix[i][j]);                
             }
             printf("\n");
         }
@@ -57,9 +58,12 @@ void printMatrix(char matrix[ROWS][COLUMN])
 
 void runtime(char matrix[ROWS][COLUMN])
 {
+    int sideAnimation = 0; // 178 é a barra
     while(1==1)
-    {
-        printMatrix(matrix);
+    {        
+        gotoxy(0, 0);
+        sideAnimation = sideAnimation == 0 ? 1 : 0;  
+        printMatrix(matrix, sideAnimation);
         CLEAR_SCREEN;
     }
 }

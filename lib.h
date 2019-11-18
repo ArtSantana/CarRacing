@@ -16,6 +16,6 @@
 
 void init(char matrix[ROWS][COLUMN]);
 
-void printMatrix(char matrix[ROWS][COLUMN]);
+void printMatrix(char matrix[ROWS][COLUMN], int Animation);
 
 void runtime(char matrix[ROWS][COLUMN]);
