@@ -9,9 +9,8 @@ int main(void)
     CLEAR_SCREEN;
 
     initCar(&RelampagoMarquinhos);
-    init(matrix);
-    putCarOnMatrix(matrix, &RelampagoMarquinhos);
-    runtime(matrix);
+    init(matrix);    
+    runtime(matrix, &RelampagoMarquinhos);
 
     return 0;
 }

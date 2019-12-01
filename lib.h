@@ -4,6 +4,11 @@
 #define COLUMN 15
 #define ROWS 25
 #define BOX 178
+#define ESC 27
+#define ARROWS 224
+#define LEFT 75
+#define RIGHT 77
+#define SPACE 32
 #ifdef _WIN32
 # define CLEAR_SCREEN system ("cls")
 #else
@@ -23,6 +28,8 @@ void initCar(car *RelampagoMarquinhos);
 
 void putCarOnMatrix(char matrix[ROWS][COLUMN], car *RelampagoMarquinhos);
 
+void movimentMarquinhos(char matrix[ROWS][COLUMN], car *RelampagoMarquinhos, int key);
+
 void printMatrix(char matrix[ROWS][COLUMN], int Animation);
 
-void runtime(char matrix[ROWS][COLUMN]);
+void runtime(char matrix[ROWS][COLUMN], car *RelampagoMarquinhos);

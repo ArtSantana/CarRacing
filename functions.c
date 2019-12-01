@@ -38,6 +38,45 @@ void putCarOnMatrix(char matrix[ROWS][COLUMN], car *RelampagoMarquinhos)
     matrix[RelampagoMarquinhos->laterais+3][RelampagoMarquinhos->ponta+2] = BOX;
 }
 
+void movimentMarquinhos(char matrix[ROWS][COLUMN], car *RelampagoMarquinhos, int key)
+{
+    switch(key)
+    {
+        case (int)'d':
+        case (int)'D':
+        case RIGHT:
+            matrix[RelampagoMarquinhos->laterais][RelampagoMarquinhos->ponta] = SPACE; // PONTA
+            matrix[RelampagoMarquinhos->laterais+1][RelampagoMarquinhos->ponta] = SPACE; // MEIO
+            matrix[RelampagoMarquinhos->laterais+2][RelampagoMarquinhos->ponta] = SPACE; // MEIO
+            matrix[RelampagoMarquinhos->laterais+1][RelampagoMarquinhos->ponta-1] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+1][RelampagoMarquinhos->ponta-2] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+1][RelampagoMarquinhos->ponta+1] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+1][RelampagoMarquinhos->ponta+2] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+3][RelampagoMarquinhos->ponta-1] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+3][RelampagoMarquinhos->ponta-2] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+3][RelampagoMarquinhos->ponta+1] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+3][RelampagoMarquinhos->ponta+2] = SPACE;
+            RelampagoMarquinhos->ponta = 10;
+            break;
+        case (int)'a':
+        case (int)'A':
+        case LEFT:
+            matrix[RelampagoMarquinhos->laterais][RelampagoMarquinhos->ponta] = SPACE; // PONTA
+            matrix[RelampagoMarquinhos->laterais+1][RelampagoMarquinhos->ponta] = SPACE; // MEIO
+            matrix[RelampagoMarquinhos->laterais+2][RelampagoMarquinhos->ponta] = SPACE; // MEIO
+            matrix[RelampagoMarquinhos->laterais+1][RelampagoMarquinhos->ponta-1] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+1][RelampagoMarquinhos->ponta-2] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+1][RelampagoMarquinhos->ponta+1] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+1][RelampagoMarquinhos->ponta+2] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+3][RelampagoMarquinhos->ponta-1] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+3][RelampagoMarquinhos->ponta-2] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+3][RelampagoMarquinhos->ponta+1] = SPACE;
+            matrix[RelampagoMarquinhos->laterais+3][RelampagoMarquinhos->ponta+2] = SPACE;
+            RelampagoMarquinhos->ponta = 4;
+            break;
+    }
+}
+
 void printMatrix(char matrix[ROWS][COLUMN], int sideAnimation)
 {
     int i, j, k;
@@ -70,25 +109,37 @@ void printMatrix(char matrix[ROWS][COLUMN], int sideAnimation)
                             matrix[k][COLUMN - 2] = 32;
                         }
                         matrix[i][1] = BOX;
-                        matrix[i][COLUMN -2] = BOX;
+                        matrix[i][COLUMN - 2] = BOX;
                     }
                 }
 
                 printf("%c", matrix[i][j]);                
             }
             printf("\n");
-        }
+        }        
     
 }
 
-void runtime(char matrix[ROWS][COLUMN])
+void runtime(char matrix[ROWS][COLUMN], car *RelampagoMarquinhos)
 {
-    int sideAnimation = 0;
-    while(1==1)
+    int sideAnimation = 0, keyPressed = 0;
+    while(keyPressed != ESC)
     {        
         gotoxy(0, 0);
-        sideAnimation = sideAnimation == 0 ? 1 : 0;  
+
+        keyPressed = 43;
+
+        if(kbhit()) keyPressed = getch(); // PEGANDO A DIREÇÃO
+
+        if(kbhit() == ARROWS) keyPressed = getch(); // SE FOR ARROW PRECISA PEGAR DUAS VEZES.
+
+        movimentMarquinhos(matrix, RelampagoMarquinhos, keyPressed);
+
+        putCarOnMatrix(matrix, RelampagoMarquinhos);
+
+        sideAnimation = sideAnimation == 0 ? 1 : 0;
         printMatrix(matrix, sideAnimation);
+        printf("%d", RelampagoMarquinhos->ponta);
         CLEAR_SCREEN;
     }
 }
