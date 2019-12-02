@@ -19,14 +19,14 @@ void init(char matrix[ROWS][COLUMN])
 void initCar(car *RelampagoMarquinhos)
 {
     RelampagoMarquinhos->ponta = 4;
-    RelampagoMarquinhos->laterais = 20;
+    RelampagoMarquinhos->laterais = 21;
     RelampagoMarquinhos->ladoTela = 0;
 }
 
 void initEnemy(car *Enemy)
 {
     Enemy->trackingLinha = 0;
-    int side = rand();
+    int side = rand() % 10;
     if(side % 2 == 0) Enemy->ponta = 10;
     else Enemy->ponta = 4;
 }
@@ -47,7 +47,7 @@ void putCarOnMatrix(char matrix[ROWS][COLUMN], car *RelampagoMarquinhos)
 }
 
 void putEnemyOnMatrix(char matrix[ROWS][COLUMN], car *Enemy)
-{
+{    
     // 4 IF'S - // 24 Ponto mais baixo - // 0 Ponto mais alto
     if(Enemy->trackingLinha == 0)
     {
@@ -56,7 +56,7 @@ void putEnemyOnMatrix(char matrix[ROWS][COLUMN], car *Enemy)
         matrix[Enemy->trackingLinha][Enemy->ponta+1] = BOX; // bundinha
         matrix[Enemy->trackingLinha][Enemy->ponta+2] = BOX; // bundinha        
     }
-    if(Enemy->trackingLinha == 1)
+    else if(Enemy->trackingLinha == 1)
     {
         // Apagando
         matrix[Enemy->trackingLinha-1][Enemy->ponta-1] = SPACE; // bundinha
@@ -70,7 +70,7 @@ void putEnemyOnMatrix(char matrix[ROWS][COLUMN], car *Enemy)
         matrix[Enemy->trackingLinha][Enemy->ponta+1] = BOX; // bundinha
         matrix[Enemy->trackingLinha][Enemy->ponta+2] = BOX; // bundinha
     }
-    if(Enemy->trackingLinha == 2)
+    else if(Enemy->trackingLinha == 2)
     {
         // Apagando
         matrix[Enemy->trackingLinha-2][Enemy->ponta] = SPACE; // solitario
@@ -89,7 +89,7 @@ void putEnemyOnMatrix(char matrix[ROWS][COLUMN], car *Enemy)
         matrix[Enemy->trackingLinha][Enemy->ponta+1] = BOX; // bundinha
         matrix[Enemy->trackingLinha][Enemy->ponta+2] = BOX; // bundinha
     }
-    if(Enemy->trackingLinha == 3)
+    else if(Enemy->trackingLinha == 3)
     {
         // Apagando
         matrix[Enemy->trackingLinha-3][Enemy->ponta - 1] = SPACE; // solitario
@@ -114,8 +114,92 @@ void putEnemyOnMatrix(char matrix[ROWS][COLUMN], car *Enemy)
         matrix[Enemy->trackingLinha][Enemy->ponta+1] = BOX; // bundinha
         matrix[Enemy->trackingLinha][Enemy->ponta+2] = BOX; // bundinha    
     }
-
     
+    else if(Enemy->trackingLinha < 25)
+    {
+        // Apagando
+        matrix[Enemy->trackingLinha-4][Enemy->ponta] = SPACE; // ponta
+        matrix[Enemy->trackingLinha-3][Enemy->ponta - 1] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta - 2] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta + 1] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta + 2] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-1][Enemy->ponta-1] = SPACE; // bundinha
+        matrix[Enemy->trackingLinha-1][Enemy->ponta-2] = SPACE; // bundinha
+        matrix[Enemy->trackingLinha-1][Enemy->ponta+1] = SPACE; // bundinha
+        matrix[Enemy->trackingLinha-1][Enemy->ponta+2] = SPACE; // bundinha    
+
+        //
+        matrix[Enemy->trackingLinha-3][Enemy->ponta] = BOX; // ponta
+        matrix[Enemy->trackingLinha-2][Enemy->ponta - 1] = BOX; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta - 2] = BOX; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta + 1] = BOX; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta + 2] = BOX; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta] = BOX; // solitario
+        matrix[Enemy->trackingLinha-1][Enemy->ponta] = BOX; // solitario
+        matrix[Enemy->trackingLinha][Enemy->ponta-1] = BOX; // bundinha
+        matrix[Enemy->trackingLinha][Enemy->ponta-2] = BOX; // bundinha
+        matrix[Enemy->trackingLinha][Enemy->ponta+1] = BOX; // bundinha
+        matrix[Enemy->trackingLinha][Enemy->ponta+2] = BOX; // bundinha    
+    }
+
+    else if(Enemy->trackingLinha == 25)
+    {
+        // Apagando
+        matrix[Enemy->trackingLinha-4][Enemy->ponta] = SPACE; // ponta
+        matrix[Enemy->trackingLinha-3][Enemy->ponta - 1] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta - 2] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta + 1] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta + 2] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-1][Enemy->ponta-1] = SPACE; // bundinha
+        matrix[Enemy->trackingLinha-1][Enemy->ponta-2] = SPACE; // bundinha
+        matrix[Enemy->trackingLinha-1][Enemy->ponta+1] = SPACE; // bundinha
+        matrix[Enemy->trackingLinha-1][Enemy->ponta+2] = SPACE; // bundinha    
+        //        
+        matrix[Enemy->trackingLinha-3][Enemy->ponta] = BOX; // ponta
+        matrix[Enemy->trackingLinha-2][Enemy->ponta - 1] = BOX; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta - 2] = BOX; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta + 1] = BOX; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta + 2] = BOX; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta] = BOX; // solitario
+        matrix[Enemy->trackingLinha-1][Enemy->ponta] = BOX; // solitario        
+    }
+    else if(Enemy->trackingLinha == 26)
+    {
+        matrix[Enemy->trackingLinha-4][Enemy->ponta] = SPACE; // ponta
+        matrix[Enemy->trackingLinha-3][Enemy->ponta - 1] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta - 2] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta + 1] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta + 2] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-3][Enemy->ponta] = SPACE; // solitario
+        matrix[Enemy->trackingLinha-2][Enemy->ponta] = SPACE; // solitario        
+        //
+        matrix[Enemy->trackingLinha-3][Enemy->ponta] = BOX; // ponta
+        matrix[Enemy->trackingLinha-2][Enemy->ponta - 1] = BOX; // medio
+        matrix[Enemy->trackingLinha-2][Enemy->ponta - 2] = BOX; // medio
+        matrix[Enemy->trackingLinha-2][Enemy->ponta + 1] = BOX; // medio
+        matrix[Enemy->trackingLinha-2][Enemy->ponta + 2] = BOX; // medio
+        matrix[Enemy->trackingLinha-2][Enemy->ponta] = BOX; // medio      
+    }
+    else if(Enemy->trackingLinha == 27)
+    {
+        matrix[Enemy->trackingLinha-4][Enemy->ponta] = SPACE; // ponta
+        matrix[Enemy->trackingLinha-3][Enemy->ponta] = SPACE; // medio
+        matrix[Enemy->trackingLinha-3][Enemy->ponta - 1] = SPACE; // medio
+        matrix[Enemy->trackingLinha-3][Enemy->ponta - 2] = SPACE; // medio
+        matrix[Enemy->trackingLinha-3][Enemy->ponta + 1] = SPACE; // medio
+        matrix[Enemy->trackingLinha-3][Enemy->ponta + 2] = SPACE; // medio
+        //
+        matrix[Enemy->trackingLinha-3][Enemy->ponta] = BOX; // ponta        
+        
+    }
+    else if(Enemy->trackingLinha == 28)
+    {
+        matrix[Enemy->trackingLinha-4][Enemy->ponta] = SPACE; // ponta        
+    }    
 }
 
 void movimentMarquinhos(char matrix[ROWS][COLUMN], car *RelampagoMarquinhos, int key)
@@ -222,6 +306,13 @@ void runtime(char matrix[ROWS][COLUMN], car *RelampagoMarquinhos, car *Enemy)
         printMatrix(matrix, sideAnimation);
 
         Enemy->trackingLinha += 1;
+        if(Enemy->trackingLinha == 29)
+        {
+            int side = rand() % 10;
+            if(side % 2 == 0) Enemy->ponta = 10;
+            else Enemy->ponta = 4;
+            Enemy->trackingLinha = 0;
+        } 
 
         CLEAR_SCREEN;
     }
